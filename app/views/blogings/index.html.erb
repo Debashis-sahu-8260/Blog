@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook-Style Blog</title>
+    <h1>Welocome to my Blog</h1>
+    <style>/* Add your CSS rules to style your Facebook-style blog */
+
+      /* Example styles for the header/navbar */
+
+
+      h1 {
+        background-color :  yellow;
+        padding: 20px;
+        text-align: center;
+        
+      }
+
+      h2{
+        float: left;
+        text-align: center;
+      }
+      .navbar {
+          background-color: #1877f2;
+          color: white;
+          padding: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+      
+      .logo {
+          font-size: 24px;
+          font-weight: bold;
+      }
+      
+      nav a {
+          color: white;
+          margin: 0 10px;
+          text-decoration: none;
+      }
+      
+      /* Example styles for the main content/posts */
+      .main-content {
+          margin-top: 60px;
+          padding: 20px;
+      }
+      
+      .post {
+          border: 1px solid #ddd;
+          margin-bottom: 20px;
+          padding: 10px;
+      }
+      
+      .post-header {
+          display: flex;
+          align-items: center;
+      }
+      
+      .post-header img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin-right: 10px;
+      }
+      
+      .user-info h3 {
+          margin: 0;
+          font-size: 18px;
+      }
+      
+      .user-info p {
+          margin: 0;
+          color: #888;
+          font-size: 14px;
+      }
+      
+      /* Example styles for the footer */
+      
+
+      body {
+  background-image: url('https://designpickle-resources.s3.us-east-2.amazonaws.com/2020/Zoom+Backgrounds/April/20_DesignPickle_Zoom_Background-4.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; 
+  text-align: center;
+  }
+      </style>
+</head>
+<body>
+    <header class="navbar">
+        
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+   <h2>Create New Post</h2>
+     <%= link_to 'Create New Post', new_post_path %>
+
+     <ul>
+     <% @posts.each do |post| %>
+     <li>
+     <h2><% link_to post.title,post_path(post) %></h2>
+     <%= form_for(post, :html =>{:method => :delete, :remote => true, data: {confirm: "Are you sure?"} }) do |post| %>
+     <%= f.submit :value => "Delete" %>
+     <% end %>
+     </li>
+
+   </ul>
+
+    
+</body>
+</html>
+
