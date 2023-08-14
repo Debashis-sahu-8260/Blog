@@ -86,6 +86,7 @@
   background-size: cover; 
   text-align: center;
   }
+
       </style>
 </head>
 <body>
@@ -100,20 +101,23 @@
     </header>
 
    <h2>Create New Post</h2>
-     <%= link_to 'Create New Post', new_post_path %>
+   <%= form_with(model: @post, local: true, multipart: true) do |form| %>
+   <br>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+  <br>
+  <%= form.label :content %>
+  <%= form.text_area :content %>
+  <br>
+  <%= form.label :images, "Images" %>
+  <%= form.file_field :images, multiple: true %>
+  <br>
+  <%= form.label :videos, "Videos" %>
+  <%= form.file_field :videos, multiple: true %>
+  <br>
+  <%= form.submit %>
+<% end %>
 
-     <ul>
-     <% @posts.each do |post| %>
-     <li>
-     <h2><% link_to post.title,post_path(post) %></h2>
-     <%= form_for(post, :html =>{:method => :delete, :remote => true, data: {confirm: "Are you sure?"} }) do |post| %>
-     <%= f.submit :value => "Delete" %>
-     <% end %>
-     </li>
-
-   </ul>
-
-    
 </body>
 </html>
 
