@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style>
+    .image-style {
+      width: 100%; 
+      max-width: 500px; 
+      height: auto; 
+    }
+  </style>
   <!-- Include CSS stylesheets and meta tags -->
 </head>
 <body>
@@ -17,6 +24,20 @@
           <div class="post">
             <h2><%= link_to bloging.title, bloging_path(bloging) %></h2>
             <p><%= truncate(bloging.content, length: 150) %></p>
+            <% if bloging.image.present? %>
+              <%= image_tag bloging.image.url, class: 'image-style' %>
+            <% end %>
+            <!--ul>
+              <% @blogings.each do |bloging| %>
+                <li>
+                  <strong><%= bloging.title %></strong>
+                  <%= link_to "Delete", bloging, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this Bloging?" } %>
+                </li>
+              <% end %>
+            </ul-->
+            <div>
+              <%= link_to "Delete", bloging, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this Bloging?" } %>
+            </div>
           </div>
         <% end %>
       </div>

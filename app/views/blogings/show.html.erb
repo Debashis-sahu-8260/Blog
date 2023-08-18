@@ -13,7 +13,9 @@
       <div class="post">
         <h2><%= @bloging.title %></h2>
         <p><%= @bloging.content %></p>
-        <%= image_tag @bloging.image.url if @bloging.image.present? %>
+        <% if @bloging.image.present? %>
+          <%= image_tag @bloging.image.url %>
+        <% end %>
       </div>
 
       <div class="back-link">

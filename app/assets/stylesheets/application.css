@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+ img {
+    width: 100%; /* You can adjust the percentage or use a fixed width value */
+  }

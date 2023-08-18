@@ -18,7 +18,7 @@ class BlogingsController < ApplicationController
         puts params.inspect
         @bloging = current_user.blogings.build(bloging_params)
         if @bloging.save
-            flash.now[:success] = 'Blog post was successfully created.'
+            flash[:success] = 'Blog post was successfully created.'
             redirect_to blogings_path
         else
             flash.now[:error] = 'There was an error creating the blog post.'
@@ -36,6 +36,7 @@ class BlogingsController < ApplicationController
     end
       
     def destroy
+      @bloging = current_user.blogings.find(params[:id])
       @bloging.destroy # Corrected 'destory' to 'destroy'
       redirect_to blogings_path, notice: 'Blog post successfully deleted'
     end
