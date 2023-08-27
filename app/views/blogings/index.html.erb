@@ -18,15 +18,19 @@
   <main>
     <div class="container">
       <h1>Welcome to My Blog</h1>
-
+      
       <div class="posts">
         <% @blogings.each do |bloging| %>
           <div class="post">
             <h2><%= link_to bloging.title, bloging_path(bloging) %></h2>
+            <p><strong>Email:</strong> <%= bloging.user.email %></p>
+            <p><strong>Posted on:</strong> <%= bloging.created_at.strftime('%B %d, %Y') %></p>
             <p><%= truncate(bloging.content, length: 150) %></p>
             <% if bloging.image.present? %>
               <%= image_tag bloging.image.url, class: 'image-style' %>
             <% end %>
+            
+
             <!--ul>
               <% @blogings.each do |bloging| %>
                 <li>

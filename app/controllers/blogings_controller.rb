@@ -2,7 +2,7 @@ class BlogingsController < ApplicationController
     before_action :authenticate_user!, except: [:show, :edit, :update, :destroy]
   
     def index
-      @blogings = current_user.blogings.all
+      @blogings = Bloging.all
     end
   
     def show 
