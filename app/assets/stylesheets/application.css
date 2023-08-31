@@ -13,6 +13,15 @@
  *= require_tree .
  *= require_self
  */
- img {
-    width: 100%; /* You can adjust the percentage or use a fixed width value */
+/* img {
+    width: 100%;  
+  }*/
+  
+
+  .user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
   }
+  
