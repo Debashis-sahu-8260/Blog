@@ -48,7 +48,7 @@ class BlogingsController < ApplicationController
     end
   
     def bloging_params
-      params.require(:bloging).permit(:title, :content, :image) # Corrected 'params_required' to 'require'
+      params.require(:bloging).permit(:title, :content, :image, :avatar) # Corrected 'params_required' to 'require'
     end
   end
   
