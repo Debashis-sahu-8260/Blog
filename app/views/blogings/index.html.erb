@@ -8,18 +8,9 @@
       height: auto; 
     }
 
-    .default-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 10px;
-    }
+
   </style>
-  <!-- Include CSS stylesheets and meta tags -->
+  
 </head>
 <body>
   <header>
@@ -33,14 +24,13 @@
       <div class="posts">
         <% @blogings.each do |bloging| %>
           <div class="post">
-            <% if bloging.user.avatar? %>
-              <%= image_tag bloging.user.avatar.url, class: "avatar" %>
-            <% else %>
-              <div class="default-avatar"><img src="https://tse3.mm.bing.net/th?id=OIP.Cl56H6WgxJ8npVqyhefTdQHaHa&pid=Api&P=0&h=180" alt="default-avatar" class="default-avatar"></div>
-            <% end %>
+            
+
+
+            
             <h2><%= link_to bloging.title, bloging_path(bloging) %></h2>
-            <p><strong>Email:</strong> <%= bloging.user.email %></p>
-            <p><strong>Posted on:</strong> <%= bloging.created_at.strftime('%B %d, %Y') %></p>
+            <!--p><strong>Email:</strong> <%= bloging.user.email %></p-->
+            <!--p><strong>Posted on:</strong> <%= bloging.created_at.strftime('%B %d, %Y') %></p-->
             <p><%= truncate(bloging.content, length: 150) %></p>
             <% if bloging.image.present? %>
               <%= image_tag bloging.image.url, class: 'image-style' %>
@@ -56,6 +46,18 @@
                 </li>
               <% end %>
             </ul-->
+
+            <% if bloging.user.avatar? %>
+              <p>Posted by <%= image_tag bloging.user.avatar.url , width: "3%", class: "round-image" %> <%= bloging.user.email %> on <%= bloging.created_at.strftime("%B %d, %Y") %></p>
+            <% else %>
+              <p>Posted by <%= bloging.user.email %> on <%= bloging.created_at.strftime("%B %d, %Y") %></p>
+              
+            <% end %>
+            <p class="meta">
+                        
+              <p>Gender: <%= bloging.user.gender %></p>
+
+            </p>
             <div>
               <%= link_to "Delete", bloging, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this Bloging?" } %>
             </div>

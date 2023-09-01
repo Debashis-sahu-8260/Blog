@@ -17,6 +17,10 @@ class BlogingsController < ApplicationController
     def create
         puts params.inspect
         @bloging = current_user.blogings.build(bloging_params)
+        if params[:user] && params[:user][:gender]
+          @bloging = current_user
+          @bloging.user.gender = params[:user][:gender]
+        end
         if @bloging.save
             flash[:success] = 'Blog post was successfully created.'
             redirect_to blogings_path
@@ -48,7 +52,7 @@ class BlogingsController < ApplicationController
     end
   
     def bloging_params
-      params.require(:bloging).permit(:title, :content, :image, :avatar) # Corrected 'params_required' to 'require'
+      params.require(:bloging).permit(:title, :content, :image, :avatar, user_attributes: [:gender]) # Corrected 'params_required' to 'require'
     end
   end
   
